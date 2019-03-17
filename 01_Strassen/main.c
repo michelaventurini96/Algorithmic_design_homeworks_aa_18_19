@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-//#include "include/matrix.h"
 #include "include/strassen.h"
 #include "include/strassen_improved.h"
 
