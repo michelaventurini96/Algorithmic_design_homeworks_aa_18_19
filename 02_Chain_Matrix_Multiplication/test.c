@@ -1,47 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <limits.h>
-#include <time.h>
 
-#include "chain.h"
+#include "include/chain.h"
+#include "include/matrix.h"
 
-double get_execution_time(const struct timespec b_time,
-                          const struct timespec e_time)
-{
-  return (e_time.tv_sec-b_time.tv_sec) + (e_time.tv_nsec-b_time.tv_nsec)/1E9;
+size_t *build_dimensions(const size_t n) {
+  size_t *dims = (size_t *)malloc(sizeof(size_t) * (n + 1));
+
+  for (size_t i = 0; i < n + 1; i++) {
+    dims[i] = rand() % 50;
+  }
+
+  return dims;
 }
 
-int main() {
+float ***build_problem_instance(const size_t *dims, const size_t n) {
+  float ***A = (float ***)malloc(sizeof(float **) * n);
 
-  size_t MSIZE = 2;
-  struct timespec b_time, e_time;
-
-  for (size_t z = 0; z < 12; z++) {
-    MSIZE = MSIZE<<1;
-
-    //initialize vector of dimensiones P
-    unsigned int* P = (unsigned int*) malloc(sizeof(unsigned int)*(MSIZE+1)) ;
-    for (size_t i = 0; i < MSIZE+1; i++) {
-      P[i]=(rand()%(10))+1;
-    }
-
-    clock_gettime(CLOCK_REALTIME, &b_time);
-    unsigned int*** result = MatrixChain(P, MSIZE);
-    clock_gettime(CLOCK_REALTIME, &e_time);
-
-    // printf("Print matrix M\n");
-    // printMatrix(result[0], MSIZE);
-    // printf("\nPrint matrix S\n");
-    // printMatrix(result[1], MSIZE-1);
-
-    printf("\nExecution time - size %ld: ", MSIZE);
-    printf("%lf s\n", get_execution_time(b_time, e_time));
-
-    deallocate_matrix(result[0], MSIZE);
-    deallocate_matrix(result[1], MSIZE-1);
-    free(result);
-    free(P);
+  for (size_t i = 0; i < n; i++) {
+    A[i] = allocate_matrix(dims[i], dims[i + 1]);
   }
-  return 0;
+
+  return A;
+}
+
+/*matrices are multiplied in the order they are passed to th instance */
+void naive_CMM(float ***problem_instance, size_t *dimensions_instance){
+    
+}
+
+int main(){
+
+      size_t *dims = build_dimensions(n);
+  float ***As = build_problem_instance(dims, n);
+
+  struct timespec requestStart, requestEnd;
+
+
 }
