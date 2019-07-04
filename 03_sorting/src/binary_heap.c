@@ -1,4 +1,12 @@
-#include "binary_heap.h"
+#include "../include/binary_heap.h"
+
+bool compareMax(const int x, const int y){
+  return x>y;
+}
+
+bool compareMin(const int x, const int y){
+  return x<y;
+}
 
 void copyArray(int* const out, const int* const in, const size_t in_size){
   for (size_t i = 0; i < in_size; i++){

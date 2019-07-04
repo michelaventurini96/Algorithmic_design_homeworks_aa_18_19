@@ -1,13 +1,13 @@
-#include "dijkstra_heap.h"
+#include "../include/dijkstra_heap.h"
 
 void printGraph(Graph* g){
     int size = g->num_vertex;
     for(int i=0; i<size; i++)
     {
         Node x = g->nodes[i];
-        printf("\nNode %d - dist=%d", x.id, x.dist);
+        printf("\nnode %d, dist=%d", x.id, x.dist);
         if((x.prev_node)!=NULL)
-            printf(" - pred=%d", x.prev_node->id);
+            printf(", pred=%d", x.prev_node->id);
         else
             printf(", /");
 
@@ -61,7 +61,7 @@ Node* findMin(BINARY_HEAP *H){
   return H->array[0];
 }
 
-int getRoot(){
+int getRoot(const BINARY_HEAP* const H){
   return 0;
 }
 
@@ -71,7 +71,7 @@ void printHeap(BINARY_HEAP *H){
     return;
   }
 
-  for (size_t i = 0; i < H->size; i++) {
+  for (int i = 0; i < H->size; i++) {
     if (H->array[i]->dist == INT_MAX) printf("INF\t");
     else printf("%d\t",H->array[i]->dist);
   }

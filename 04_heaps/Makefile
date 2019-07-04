@@ -1,6 +1,6 @@
 CXX = gcc
 OPT = -O4
-SOURCE = main.c binary_heap.h binary_heap.c
+SOURCE = main.c include/binary_heap.h src/binary_heap.c
 FLAG = -Wall -Wextra
 
 all: main.x

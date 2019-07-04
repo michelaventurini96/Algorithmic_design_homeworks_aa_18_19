@@ -1,6 +1,6 @@
 #include <time.h>
-#include "dijkstra_array.h"
-#include "dijkstra_heap.h"
+#include "include/dijkstra_array.h"
+#include "include/dijkstra_heap.h"
 
 // routine to get time of execution
 double getExecutionTime(const struct timespec b_time, const struct timespec e_time){
@@ -34,7 +34,7 @@ int main() {
   struct timespec b_time, e_time;
   double arrayTime, heapTime; // variables to time executions
   
-  for (size_t V = 5; V <= 8; V++)
+  for (size_t V = 5; V <= 7; V++)
   {
     printf("# of vertex: %ld\n", V);
 

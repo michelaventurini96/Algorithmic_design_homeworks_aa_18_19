@@ -1,15 +1,10 @@
+#ifndef __HEAP__
+#define __HEAP__
+
 #include<stdio.h>
 #include <stdlib.h>
 #include<limits.h>
 #include<stdbool.h>
-
-bool compareMax(const int x, const int y){
-  return x>y;
-}
-
-bool compareMin(const int x, const int y){
-  return x<y;
-}
 
 typedef struct binary_heap{
   int* array;
@@ -17,7 +12,8 @@ typedef struct binary_heap{
   bool (*compare)(int, int);
 }BINARY_HEAP;
 
-
+bool compareMax(const int x, const int y);
+bool compareMin(const int x, const int y);
 void copyArray(int* const out, const int* const in, const size_t in_size);
 void printArray(const int* const A, const size_t asize);
 int* initArray(const size_t asize);
@@ -35,3 +31,5 @@ BINARY_HEAP* buildHeap(int* const A, size_t asize, bool  (*compare)(int, int));
 void heapDecreaseKey(BINARY_HEAP* const H, size_t i, const int value);
 void heapInsert(BINARY_HEAP* const H, const int value);
 void heapSort(int* a, int n, bool (*compare)(int, int));
+
+#endif

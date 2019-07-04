@@ -1,10 +1,15 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include "../include/radix.h"
+
+void initArray_r(int* const a, const size_t n){
+  for (size_t i = 0; i < n; i++) {
+    a[i] = 100 + rand() %99 ;
+  }
+}
 
 // A utility function to get maximum value in arr[]
-int getMax(int* a, int n){
+int getMax(int* a, size_t n){
     int mx = a[0];
-    for (int i = 1; i < n; i++)
+    for (size_t i = 1; i < n; i++)
         if (a[i] > mx)
             mx = a[i];
     return mx;
@@ -12,7 +17,7 @@ int getMax(int* a, int n){
 
 // A function to do counting sort of arr[] according to
 // the digit represented by exp.
-void countSort(int* a, int n, int exp){
+void countSort_r(int* a, int n, int exp){
     int output[n]; // output array
     int i, count[10] = {0};
 
@@ -48,22 +53,5 @@ void radixsort(int* a, int n){
     // of passing digit number, exp is passed. exp is 10^i
     // where i is current digit number
     for (int exp = 1; m/exp > 0; exp *= 10)
-        countSort(a, n, exp);
-}
-
-// A utility function to print an array
-void print(int a[], int n)
-{
-    for (int i = 0; i < n; i++)
-      printf("%d \n", a[i]);
-}
-
-// Driver program to test above functions
-int main()
-{
-    int a[] = {170, 45, 75, 90, 802, 24, 2, 66};
-    int n = sizeof(a)/sizeof(a[0]);
-    radixsort(a, n);
-    printArray_int(a, n);
-    return 0;
+        countSort_r(a, n, exp);
 }

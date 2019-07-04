@@ -1,6 +1,6 @@
 #include<stdlib.h>
 #include <stdio.h>
-#include "dijkstra_array.h"
+#include "../include/dijkstra_array.h"
 
 // A utility function to find the vertex with minimum distance value, from 
 // the set of vertices not yet included in shortest path tree 
@@ -17,8 +17,10 @@ int minDistance(int* dist, bool* sptSet, const size_t V) {
 
 // A utility function to print the constructed distance array 
 int printSolution(const int* const dist, const size_t V) {  
-	for (size_t i = 0; i < V; i++) 
-		printf("Node: %ld - dist: %d\n", i, dist[i]); 
+	for (size_t i = 0; i < V; i++){ 
+		if(dist[i] == INT_MAX) printf("Node: %ld - dist: /\n", i); 
+		else printf("Node: %ld - dist: %d\n", i, dist[i]); 
+	}
 } 
 
 // Function that implements Dijkstra's single source shortest path algorithm 

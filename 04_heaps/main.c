@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include<limits.h>
 #include<stdbool.h>
-#include "binary_heap.h"
+#include "include/binary_heap.h"
 
 int main() {
   
@@ -21,14 +21,14 @@ int main() {
   printf("Heap without minimum/maximum\n");
   printArray(H->array, asize);
 
-  printf("HeapSort\n");
-  int* B= initArray(asize);
-  printArray(B, asize);
-  heapSort(B, asize, compareMax);
-  printArray(B, asize);
+  // printf("HeapSort\n");
+  // int* B= initArray(asize);
+  // printArray(B, asize);
+  // heapSort(B, asize, compareMax);
+  // printArray(B, asize);
 
   free(H);
-  free(B);
+  //free(B);
 
   return 0;
 

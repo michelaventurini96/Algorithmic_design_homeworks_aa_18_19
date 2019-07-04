@@ -1,15 +1,16 @@
-#include "dijkstra_heap.h"
+#include "../include/dijkstra_heap.h"
 
 void printGraph(Graph* g){
     int size = g->num_vertex;
     for(int i=0; i<size; i++)
     {
         Node x = g->nodes[i];
-        printf("\nnode %d, dist=%d", x.id, x.dist);
+        if(x.dist == INT_MAX) printf("\nNode: %d - dist: /", x.id);
+        else printf("\nNode: %d - dist: %d", x.id, x.dist);
         if((x.prev_node)!=NULL)
-            printf(", pred=%d", x.prev_node->id);
+            printf(" - pred: %d", x.prev_node->id);
         else
-            printf(", /");
+            printf(" - pred: /");
 
     }
     printf("\n");
@@ -24,16 +25,6 @@ void printMatrix(int** matrix, int n_row, int n_col){
     printf("\n");
   }
 }
-
-
-/*bool compareMax(const int x, const int y){
-  return x>y;
-}
-
-bool compareMin(const int x, const int y){
-  return x<y;
-}*/
-
 
 // routines of binary heap
 bool isRoot(const size_t i){
@@ -61,7 +52,7 @@ Node* findMin(BINARY_HEAP *H){
   return H->array[0];
 }
 
-int getRoot(const BINARY_HEAP* const H){
+int getRoot(){
   return 0;
 }
 
@@ -71,7 +62,7 @@ void printHeap(BINARY_HEAP *H){
     return;
   }
 
-  for (int i = 0; i < H->size; i++) {
+  for (size_t i = 0; i < H->size; i++) {
     if (H->array[i]->dist == INT_MAX) printf("INF\t");
     else printf("%d\t",H->array[i]->dist);
   }
