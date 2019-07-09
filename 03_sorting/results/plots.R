@@ -16,3 +16,8 @@ plot(size1, bucket, type='b', xlab="Size", ylab = "Time [s]", main = "Linear Sor
 lines(size1, radix, type='b', col=2)
 lines(size1, counting, type='b', col=3)
 legend("topleft", lty=c(1,1,1),legend = c("Bucket", "Radix", "Counting"), col = c("black", "green","red"))
+
+
+size2 <- c(2,4,8, 16,32,64,128,256)
+heap <-c(0.000002, 0.000002, 0.000004, 0.000009, 0.000027, 0.000050, 0.000115, 0.000247)
+plot(size2, heap, type='b', col=4, xlab="Size", ylab = "Time [s]", main = "Heap Sorting")
