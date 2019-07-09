@@ -18,13 +18,26 @@ int** initMatrix(size_t V){
       adj_matrix[i][j]=INT_MAX;
     }
   }
-  
+
+  if(V <=7){
     adj_matrix[0][1] = 1;
     adj_matrix[0][2] = 5;
     adj_matrix[1][5] = 15;
     adj_matrix[2][3] = 2;
     adj_matrix[3][4] = 1;
     adj_matrix[4][5] = 3;
+  }else{
+  
+    for (size_t i = 0; i < V; i+=2){
+      for (size_t j = 0; j < V; j+=2)
+      {
+        adj_matrix[i][j] = (int) rand()%20;
+      }
+      
+    }
+  }
+  
+
 
   return adj_matrix;
 
@@ -34,27 +47,27 @@ int main() {
   struct timespec b_time, e_time;
   double arrayTime, heapTime; // variables to time executions
   
-  for (size_t V = 5; V <= 7; V++)
+  for (size_t V = 5; V <= 100; V+=10)
   {
-    printf("# of vertex: %ld\n", V);
+    printf("# of vertex: %ld\t", V);
 
     int** adj_matrix = initMatrix(V);
 
-    printf("**** Adj Matrix ****\n");
-    printMatrix(adj_matrix,V,V);
+    // printf("**** Adj Matrix ****\n");
+    //printMatrix(adj_matrix,V,V);
     
     // array based implementation
 
-    printf("\n**** Array solution ****\n");
+    // printf("\n**** Array solution ****\n");
     
     clock_gettime(CLOCK_REALTIME, &b_time);
     int* solution = dijkstra(adj_matrix, V, 0); 
     clock_gettime(CLOCK_REALTIME, &e_time);
     
     arrayTime = getExecutionTime(b_time,e_time);
-    printf("Time = %lf\n",heapTime );
+    printf("ATime = %lf\t",heapTime );
 
-    printSolution(solution, V);
+    //printSolution(solution, V);
     
     // heap based implementation
 
@@ -63,16 +76,16 @@ int main() {
     g.adj_list = adj_matrix;
     g.nodes = (Node*) malloc(sizeof(Node)*V);
   
-    printf("\n**** Heap solution ****\n");
+    //printf("\n**** Heap solution ****\n");
     
     clock_gettime(CLOCK_REALTIME, &b_time);
     dijkstraHeap(&g, 0);
     clock_gettime(CLOCK_REALTIME, &e_time);
     
     heapTime = getExecutionTime(b_time,e_time);
-    printf("Time = %lf\n",heapTime );
+    printf("HTime = %lf\n",heapTime );
     
-    printGraph(&g);
+    //printGraph(&g);
 
   }
 

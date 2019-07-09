@@ -3,9 +3,9 @@ EXE = test.x
 CXX = gcc
 CXXFLAGS = -O4 -Wall -Wextra
 
-SRC = main.c src/matrix.c
+SRC = main.c 
 OBJ=$(SRC:.c=.o)
-INC = include/matrix.h include/chain.h
+INC =  include/chain.h #include/matrix.h
 
 # eliminate default suffixes
 .SUFFIXES:

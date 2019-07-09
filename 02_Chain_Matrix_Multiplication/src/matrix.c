@@ -6,8 +6,7 @@ int naive_matrix_mult(float **C,
                         const size_t A_rows,
                         const size_t A_cols,
                         const size_t B_rows,
-                        const size_t B_cols)
-{
+                        const size_t B_cols){
   if (A_cols != B_rows) {
      return -1;
   }
